@@ -1,0 +1,6 @@
+{
+  "name": "Luxury Real-Time Messenger",
+  "description": "A private, real-time messaging application with Google Sign-In, secure invitations, media and voice notes, and end-to-end conversation flows.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

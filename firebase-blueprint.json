@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "UserProfile": {
+      "collection": "users",
+      "fields": {
+        "uid": { "type": "string", "description": "User's unique Firebase Auth UID" },
+        "name": { "type": "string", "description": "Display name" },
+        "photoURL": { "type": "string", "description": "Avatar image URL or Base64 / Storage URL" },
+        "email": { "type": "string", "description": "Google account email" },
+        "status": { "type": "string", "description": "Presence status: online | offline" },
+        "lastSeen": { "type": "string", "description": "ISO timestamp of last activity" },
+        "createdAt": { "type": "string", "description": "ISO timestamp when profile was created" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp when profile was last updated" }
+      }
+    },
+    "Invitation": {
+      "collection": "invitations",
+      "fields": {
+        "id": { "type": "string", "description": "Invitation document ID" },
+        "token": { "type": "string", "description": "Cryptographically secure random invitation token" },
+        "createdBy": { "type": "string", "description": "UID of person generating the invitation" },
+        "creatorName": { "type": "string", "description": "Display name of the inviter" },
+        "creatorPhotoURL": { "type": "string", "description": "Avatar photo of the inviter" },
+        "status": { "type": "string", "description": "active | used | expired" },
+        "createdAt": { "type": "string", "description": "ISO timestamp when invitation was created" },
+        "expiresAt": { "type": "string", "description": "ISO timestamp when invitation expires (e.g. 48h)" },
+        "usedBy": { "type": "string", "description": "UID of user who accepted the invitation" },
+        "usedAt": { "type": "string", "description": "ISO timestamp when invitation was redeemed" }
+      }
+    },
+    "Conversation": {
+      "collection": "conversations",
+      "fields": {
+        "id": { "type": "string", "description": "Conversation ID (deterministic or generated)" },
+        "participants": { "type": "array", "description": "Array of 2 user UIDs" },
+        "participantDetails": { "type": "map", "description": "Map of user UID to name, photoURL, and lastSeen" },
+        "lastMessage": { "type": "string", "description": "Snippet of the latest message" },
+        "lastMessageType": { "type": "string", "description": "text | image | video | audio" },
+        "lastMessageAt": { "type": "string", "description": "ISO timestamp of last message" },
+        "lastMessageSenderId": { "type": "string", "description": "UID of last message sender" },
+        "createdAt": { "type": "string", "description": "ISO timestamp when conversation was initiated" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp when conversation was updated" }
+      }
+    },
+    "Message": {
+      "collection": "conversations/{conversationId}/messages",
+      "fields": {
+        "id": { "type": "string", "description": "Message unique ID" },
+        "conversationId": { "type": "string", "description": "Parent conversation ID" },
+        "senderId": { "type": "string", "description": "UID of message sender" },
+        "senderName": { "type": "string", "description": "Name of sender" },
+        "senderPhotoURL": { "type": "string", "description": "Photo URL of sender" },
+        "text": { "type": "string", "description": "Message text content" },
+        "type": { "type": "string", "description": "text | image | video | audio" },
+        "mediaUrl": { "type": "string", "description": "Media data URL or Firebase Storage URL" },
+        "mediaDuration": { "type": "number", "description": "Audio / video duration in seconds" },
+        "mediaSize": { "type": "number", "description": "Media file size in bytes" },
+        "status": { "type": "string", "description": "sent | delivered | read" },
+        "deleted": { "type": "boolean", "description": "True if soft-deleted by sender" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of message dispatch" }
+      }
+    }
+  }
+}
